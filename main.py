@@ -46,18 +46,18 @@ with ui.row().classes('w-full justify-center gap-6 p-4'):
         ui.label('Instellingen').classes('text-lg font-semibold')
         
         ui.label('Straal vaste cirkel (R)')
-        ui.slider(min=50, max=180, value=120).on('update:model-value', lambda e: [globals().update(R=e.args), update_spirograph()])
+        ui.slider(min=50, max=180, value=120).on(':model-value', lambda e: [globals().(R=e.args), _spirograph()])
         
         ui.label('Straal bewegende cirkel (r)')
-        ui.slider(min=10, max=150, value=80).on('update:model-value', lambda e: [globals().update(r=e.args), update_spirograph()])
+        ui.slider(min=10, max=150, value=80).on(':model-value', lambda e: [globals().(r=e.args), _spirograph()])
         
         ui.label('Afstand pen (d)')
-        ui.slider(min=10, max=150, value=100).on('update:model-value', lambda e: [globals().update(d=e.args), update_spirograph()])
+        ui.slider(min=10, max=150, value=100).on(':model-value', lambda e: [globals().(d=e.args), _spirograph()])
 
     # Weergave van de spirograaf via een SVG element
     with ui.column().classes('items-center'):
         svg_container = ui.html()
-        update_spioragraph()  # Teken direct bij het laden
+        update_spirograph()  # Teken direct bij het laden
 
 # Zorg dat NiceGUI luistert naar de juiste poort voor cloud-hosting (zoals Render of Hugging Face)
 ui.run(port=8080, host='0.0.0.0', title='Spirograaf App', show=False)
